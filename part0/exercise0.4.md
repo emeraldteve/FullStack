@@ -10,6 +10,11 @@ sequenceDiagram
     deactivate server
     Note right of browser: User inputs text into the text field and clicks 'Save'
 
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    activate server
+    server-->>browser: Javascript file
+    Note right of browser: JavaScript file takes the user's input, saves it, and sends it to the server
+
     browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
     activate server
     server-->>browser: URL Redirect (Status Code: 302)
