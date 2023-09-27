@@ -1,66 +1,35 @@
-
-#  Exercises 1.1.-1.2
-
-## Table of Contents
-
-- [Overview](#overview)
-- [What I Practiced](#what-i-practiced)
-- [Key Concepts](#key-concepts)
-- [Breakdown](#breakdown)
-
----
+# courseinfo
 
 ## Overview
 
-I've created a simple React application using React components and used props to pass data between these components to display information about a course and its parts.
+This project is a simple React application that serves as an introduction to fundamental React concepts, such as components, props, and rendering dynamic content. The app displays information about a course, including its name and individual parts.
 
----
+## Components
 
-## What I Practiced
+### `App`
 
-I practiced the following:
+The main component that represents the entire application. It includes the course information and renders the `Header`, `Content`, and `Total` components.
 
-1. **React Functional Components**: I defined React functional components (`Header`, `Part`, and `Total`) to structure my application's UI.
+### `Header`
 
-2. **Props**: I learned how to pass data and information between components using props. Each component receives props as arguments and uses them to display dynamic content.
+A functional component that receives `props` and displays the course name in an `<h1>` tag.
 
-3. **Rendering JSX**: I practiced rendering JSX (JavaScript XML) to create the user interface of my application. JSX allows me to write HTML-like code within my JavaScript.
+### `Content`
 
-4. **Component Composition**: I composed my application's UI by nesting components within each other. This promotes a modular and reusable code structure.
+Responsible for rendering the individual parts of the course. It uses the `map` method to dynamically generate `<p>` elements for each part, showing both the name and the number of exercises.
 
-5. **Dynamic Content**: I displayed dynamic content by passing variables and expressions as props, making my components flexible and capable of showing different data.
+### `Total`
 
----
+Calculates the total number of exercises in the course using the `reduce` method. It iterates over the array of parts and sums up the exercises. The result is displayed in a `<p>` tag.
 
-## Key Concepts
+## Practice Highlights
 
-### React Functional Components
+1. **Defining Components:** Demonstrated how to create functional components (`Header`, `Content`, `Total`) to organize the UI.
 
-React functional components are JavaScript functions that return JSX elements. They allow me to build reusable UI pieces.
+2. **Props Handling:** Passed course information as props to child components (`Header`, `Content`, `Total`).
 
-### Props
+3. **Mapping Over Arrays:** Utilized the `map` method to dynamically render content based on an array of parts.
 
-Props (short for properties) are a way to pass data from a parent component to a child component. They are read-only and help make my components customizable and flexible.
+4. **Calculating Totals:** Showed how to compute a total by iterating over an array using the `reduce` method.
 
-### JSX
-
-JSX is a syntax extension for JavaScript often used in React to describe what the UI should look like. It resembles HTML but is compiled into JavaScript.
-
-### Component Composition
-
-In React, I can compose complex UIs by combining and nesting multiple components. This promotes code reusability and maintainability.
-
-### Dynamic Content
-
-By passing different props to components, I can display dynamic content that changes based on the data I provide. This makes my UI adaptable and responsive to varying data.
-
----
-
-## Breakdown
-
-The provided code consists of the following main components:
-
-1. `App`: The main application component that renders the entire application.
-2. `Header`: A component for displaying the course title.
-3. `Part`: A component for displaying the names of course parts and their respective exercise counts.
-4. `Total`: A component for displaying the total number of exercises in the course.
+5. **Key Prop Usage:** Included the `key` prop when rendering lists for better performance.
