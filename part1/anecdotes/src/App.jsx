@@ -2,12 +2,21 @@ console.clear()
 
 import { useState } from 'react'
 
-const Button = (props) => {
+const NextAnecdote = (props) => {
   return (<button onClick={props.rollForAnecdote}>{props.text}</button>)
 }
 
-const Display = (props) => {
-  return <p>{props.anecdoteCollection[props.selected]}</p>
+const Quote = (props) => {
+  return (
+    <>
+      <p>{props.anecdoteCollection[props.selected]}</p>
+      <p>has {props.votes} votes</p>
+    </>
+  )
+}
+
+const Upvote = (props) => {
+  return (<button onClick={props.upvote}>{props.text}</button>)
 }
 
 const App = () => {
@@ -21,23 +30,31 @@ const App = () => {
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
   ]
-   
-  const [selected, setSelected] = useState(0)
 
+  const [selected, setSelected] = useState(0)
+  const [points, setPoints] = useState(Array(anecdotes.length).fill(0))
+  const copy = [...points]
+  
   const generateRandomNumber = (props) => {
     let randomNumber
 
     do {
       randomNumber = Math.floor(Math.random() * props.length)
     } while (randomNumber === selected)
-    
+
     setSelected(randomNumber)
+  }
+
+  const updateVotes = () => {
+    copy[selected] += 1
+    setPoints(copy)
   }
 
   return (
     <div>
-      <Display anecdoteCollection={anecdotes} selected={selected} />
-      <Button rollForAnecdote={() => generateRandomNumber(anecdotes)} text="next anecdote" />
+      <Quote anecdoteCollection={anecdotes} selected={selected} votes={points[selected]} />
+      <Upvote upvote={updateVotes} text="vote" />
+      <NextAnecdote rollForAnecdote={() => generateRandomNumber(anecdotes)} text="next anecdote" />
     </div>
   )
 }
