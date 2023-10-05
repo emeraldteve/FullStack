@@ -1,5 +1,3 @@
-console.clear()
-
 import { useState } from 'react'
 
 const NextAnecdote = (props) => {
@@ -9,10 +7,28 @@ const NextAnecdote = (props) => {
 const Quote = (props) => {
   return (
     <>
+      <h1>Anecdote of the day</h1>
       <p>{props.anecdoteCollection[props.selected]}</p>
       <p>has {props.votes} votes</p>
     </>
   )
+}
+
+const MostPopularQuote = (props) => {
+  const numbers = [...props.votes]
+  const sum = numbers.reduce((add, current) => add + current, 0)
+  const highestVote = Math.max(...numbers)
+  const quoteIndex = numbers.indexOf(highestVote)
+
+  if (sum !== 0) {
+    return (
+      <>
+        <h1>Anecdote with most votes</h1>
+        <p>{props.anecdoteCollection[quoteIndex]}</p>
+        <p>has {highestVote} votes</p>
+      </>
+    )
+  }
 }
 
 const Upvote = (props) => {
@@ -34,7 +50,7 @@ const App = () => {
   const [selected, setSelected] = useState(0)
   const [points, setPoints] = useState(Array(anecdotes.length).fill(0))
   const copy = [...points]
-  
+
   const generateRandomNumber = (props) => {
     let randomNumber
 
@@ -55,6 +71,7 @@ const App = () => {
       <Quote anecdoteCollection={anecdotes} selected={selected} votes={points[selected]} />
       <Upvote upvote={updateVotes} text="vote" />
       <NextAnecdote rollForAnecdote={() => generateRandomNumber(anecdotes)} text="next anecdote" />
+      <MostPopularQuote anecdoteCollection={anecdotes} votes={points} />
     </div>
   )
 }
