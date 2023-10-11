@@ -1,5 +1,4 @@
-
-# Course Information App
+# courseinfo
 
 ## Overview
 
